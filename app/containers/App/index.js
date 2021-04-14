@@ -32,12 +32,22 @@ function App() {
 
     
   }, [])
-  return <div>{critics.length > 0 && critics
+  return (
+  <>
+    <header>
+      <input 
+      className="search" 
+      type="search" 
+      placeholder="search critic" />
+    </header>
+    <div className="critic-container">
+    {critics.length > 0 && critics
     .map((critic) => 
       <Critic key ={critic.id} {...critic} />
       
 
   )}
+  </div>
   <Helmet defaultTitle="Everyone's a critic">
       <meta name="description" content="React Movie Reviews" />
     </Helmet>
@@ -46,8 +56,8 @@ function App() {
       <Route path="/" component={HomePage} exact />
       <Route path="/home" component={HomePage} />
     </Switch>
-  </div>
-  
+  </>
+  );
 }
 
   export default App;
