@@ -102,11 +102,40 @@ body {
 }
 
 .search{
-  background-color: #fff;
-  padding: 1rem;
+  
+  padding: 1rem; 
+  font-family: inherit;
+  border: 2px solid #22254b;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  background-color: transparent;
+  color: #fff;
 }
 
-.header {
-  background-color: #22254b;
+.search:focus {
+  outline: none;
+}
+
+header {
+  background-color: #373b69;
   padding: 1rem;
+  justify-content: flex-end;
+}
+
+.tag {
+  background-color: #22254b;
+  padding: 0.5rem;
+  border-radius: 5px;
+  font-size: bold;
+
+}
+
+.tag.green {
+color: green;
+}
+.tag.orange {
+  color: orange;
+}
+.tag.red {
+  color: red;
 }

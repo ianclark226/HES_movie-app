@@ -13,17 +13,24 @@ import { Switch, Route } from 'react-router-dom'
 
 import HomePage from 'containers/HomePage/HomePage'
 
-const CRITIC_API = "https://api.themoviedb.org/3/discover/movie?sort_by-popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
+const FEATURED_API = "https://api.themoviedb.org/3/discover/movie?sort_by-popularity.desc&api_key=04c35731a5ee918f014970082a0088b1&page=1";
 const IMG_API = "https://image.tmdb.org/t/p/w1280";
 const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query="
 
 import '../../styles/styles.scss'
+import { get } from 'lodash';
 
 function App() {
   const [critics, setCritics] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  useEffect(() =>{
-    fetch(CRITIC_API)
+  useEffect(() => {
+    getCritics(FEATURED_API);
+
+  },[]);
+
+    const getCritics = (API) => {
+    fetch(API)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
@@ -31,14 +38,35 @@ function App() {
     })
 
     
-  }, [])
+}
+
+ 
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+
+    if(searchTerm) {
+getCritics(SEARCH_API + searchTerm);
+    
+    
+    setSearchTerm('');
+  }
+
+  }
+
+  const handleOnChange = (e) => {
+    setSearchTerm(e.target.value);
+  }
   return (
   <>
     <header>
+      <form onSubmit={handleOnSubmit}>
       <input 
       className="search" 
       type="search" 
-      placeholder="search critic" />
+      placeholder="search critic" 
+      value={searchTerm} 
+      onChange={handleOnChange}/>
+      </form>
     </header>
     <div className="critic-container">
     {critics.length > 0 && critics
