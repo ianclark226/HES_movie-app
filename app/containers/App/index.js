@@ -20,21 +20,21 @@ const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a
 import '../../styles/styles.scss'
 
 function App() {
-  const critics = [critics, setCritics] = useState([]);
+  const [critics, setCritics] = useState([]);
 
   useEffect(() =>{
     fetch(CRITIC_API)
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      setCritics(data);
+      setCritics(data.results);
     })
 
     
-  })
+  }, [])
   return <div>{critics.length > 0 && critics
     .map((critic) => 
-      <Critic />
+      <Critic key ={critic.id} {...critic} />
       
 
   )}
