@@ -9,7 +9,7 @@
 import '@babel/polyfill'
 
 // Import all the third party stuff
-import React from 'react'
+import React, {useState} from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
@@ -29,6 +29,8 @@ import configureStore from './config/configureStore'
 
 // Observe loading of Open Sans (to remove open sans, remove the <link> tag in
 // the index.html file and this observer)
+
+
 const openSansObserver = new FontFaceObserver('Open Sans', {})
 
 // When Open Sans is loaded, add a font-family using Open Sans to the body
