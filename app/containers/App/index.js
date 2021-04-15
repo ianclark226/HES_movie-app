@@ -41,6 +41,10 @@ const displayUsers = users
       <h3>{user.display_name}</h3>
       <h3>{user.sort_name}</h3>
       <h3>{user.status}</h3>
+      <h3>{user.bio}</h3>
+      <h3>{user.seo_name}</h3>
+
+      
       </div>
   )
 })
@@ -53,7 +57,7 @@ setPageNumber(selected)
 
   
 //   const [critics, setCritics] = useState([]);
-//   const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState('');
 
 //   useEffect(() => {
 //     getCritics(FEATURED_API);
@@ -72,27 +76,37 @@ setPageNumber(selected)
 // }
 
  
-//   const handleOnSubmit = (e) => {
-//     e.preventDefault();
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
 
-//     if(searchTerm) {
-// getCritics(SEARCH_API + searchTerm);
+    if(searchTerm) {
+getCritics(SEARCH_API + searchTerm);
     
     
-//     setSearchTerm('');
-//   }
+    setSearchTerm('');
+  }
 
-//   }
+  }
 
-//   const handleOnChange = (e) => {
-//     setSearchTerm(e.target.value);
-//   }
+  const handleOnChange = (e) => {
+    setSearchTerm(e.target.value);
+  }
 
 //GET CURRENT POSTS
 
   return (
 
     <div className="App">
+      <header>
+      <form onSubmit={handleOnSubmit}>
+      <input 
+      className="search" 
+      type="search" 
+      placeholder="search critic" 
+      value={searchTerm} 
+      onChange={handleOnChange}/>
+      </form>
+    </header>
     {displayUsers} <ReactPaginate
       previousLabel={"Previous"}
       nextLabel={"Next"}
@@ -116,16 +130,16 @@ setPageNumber(selected)
 
 
   // <div>
-  //   <header>
-  //     <form onSubmit={handleOnSubmit}>
-  //     <input 
-  //     className="search" 
-  //     type="search" 
-  //     placeholder="search critic" 
-  //     value={searchTerm} 
-  //     onChange={handleOnChange}/>
-  //     </form>
-  //   </header>
+    // <header>
+    //   <form onSubmit={handleOnSubmit}>
+    //   <input 
+    //   className="search" 
+    //   type="search" 
+    //   placeholder="search critic" 
+    //   value={searchTerm} 
+    //   onChange={handleOnChange}/>
+    //   </form>
+    // </header>
   //   <div className="critic-container">
   //   {critics.length > 0 && critics
   //   .map((critic) => 
