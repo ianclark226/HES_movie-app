@@ -10,10 +10,10 @@ import React, { useEffect, useState } from 'react'
 import JsonData from '../../public/critics.json'
 import ReactPaginate from 'react-paginate'
 import Posts from './components/posts'
-import Critic from './components/critics';
-import { Helmet } from 'react-helmet' // Header Generator
-import { Switch, Route } from 'react-router-dom'
-import PostList from './components/post_list';
+// import Critic from './components/critics';
+// import { Helmet } from 'react-helmet' // Header Generator
+// import { Switch, Route } from 'react-router-dom'
+// import PostList from './components/post_list';
 
 
 import HomePage from 'containers/HomePage/HomePage'
@@ -23,7 +23,7 @@ import HomePage from 'containers/HomePage/HomePage'
 // const SEARCH_API = "https://api.themoviedb.org/3/search/movie?&api_key=04c35731a5ee918f014970082a0088b1&query="
 
 import '../../styles/styles.scss'
-import { get } from 'lodash';
+import { get, includes } from 'lodash';
 
 function App() {
  const [users, setUsers] = useState(JsonData.slice(0, 50));
@@ -33,21 +33,21 @@ const usersPerPage = 10;
 
 const pagesVisited = pageNumber * usersPerPage;
 
-const displayUsers = users
-.slice(pagesVisited, pagesVisited + usersPerPage)
-.map((user) => {
-  return (
-    <div className="user">
-      <h3>{user.display_name}</h3>
-      <h3>{user.sort_name}</h3>
-      <h3>{user.status}</h3>
-      <h3>{user.bio}</h3>
-      <h3>{user.seo_name}</h3>
+// const displayUsers = users
+// .slice(pagesVisited, pagesVisited + usersPerPage)
+// .map((user) => {
+//   return (
+//     <div className="user">
+//       <h3>{user.display_name}</h3>
+//       <h3>{user.sort_name}</h3>
+//       <h3>{user.status}</h3>
+//       <h3>{user.bio}</h3>
+//       <h3>{user.seo_name}</h3>
 
       
-      </div>
-  )
-})
+//       </div>
+//   )
+// })
 
 const pageCount = Math.ceil(users.length / usersPerPage);
 
@@ -76,21 +76,21 @@ setPageNumber(selected)
 // }
 
  
-  const handleOnSubmit = (e) => {
-    e.preventDefault();
+//   const handleOnSubmit = (e) => {
+//     e.preventDefault();
 
-    if(searchTerm) {
-getCritics(SEARCH_API + searchTerm);
+//     if(searchTerm) {
+// getCritics(SEARCH_API + searchTerm);
     
     
-    setSearchTerm('');
-  }
+//     setSearchTerm('');
+//   }
 
-  }
+//   }
 
-  const handleOnChange = (e) => {
-    setSearchTerm(e.target.value);
-  }
+  // const handleOnChange = (e) => {
+  //   setSearchTerm(e.target.value);
+  // }
 
 //GET CURRENT POSTS
 
@@ -98,16 +98,34 @@ getCritics(SEARCH_API + searchTerm);
 
     <div className="App">
       <header>
-      <form onSubmit={handleOnSubmit}>
+     
       <input 
-      className="search" 
-      type="search" 
-      placeholder="search critic" 
-      value={searchTerm} 
-      onChange={handleOnChange}/>
-      </form>
-    </header>
-    {displayUsers} <ReactPaginate
+      type="text" 
+      placeholder="search critic" onChange={(e) => {setSearchTerm(e.target.value)}}
+      />
+      {JsonData
+      .filter((val) => {
+        if(searchTerm === "") {
+          return val;
+        } else if (val.display_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+          return val;
+        }
+      })
+       
+      .slice(pagesVisited, pagesVisited + usersPerPage)
+
+      .map((val, key) => {
+        return (
+          <div className="user" key={key}>
+            <p>{val.display_name}</p>
+            <p>{val.sort_name}</p>
+            <p>{val.status}</p>
+            <p>{val.bio}</p>
+            <p>{val.seo_name}</p>
+            </div>
+        )
+      })}
+     <ReactPaginate
       previousLabel={"Previous"}
       nextLabel={"Next"}
       pageCount={pageCount}
@@ -117,7 +135,10 @@ getCritics(SEARCH_API + searchTerm);
       nextLinkClassName={"nextBttn"}
       disabledClassName={"paginationDisabled"}
       activeClassName={"paginationActive"}
-    />
+    /> 
+    </header>
+     {/* {displayUsers}  */}
+    
           </div>
       )
   }
