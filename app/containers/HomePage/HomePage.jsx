@@ -19,11 +19,11 @@ export function HomePage(props) {
       <Helmet>
         <meta name="description" content="Home" />
       </Helmet>
-      <main>
+      {/* <main>
         <img src={hesImg} />
         <h1>I am no Jedi.</h1>
         <p>&mdash; Ahsoka Tano</p>
-      </main>
+      </main> */}
     </div>
   )
 }

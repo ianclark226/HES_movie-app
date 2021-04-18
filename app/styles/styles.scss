@@ -54,72 +54,8 @@ body {
   background-color: var(--grey-200);
 }
 
-// .critic {
-//   width: 250px;
-//   margin: 1rem;
-//   background-color: #373b69;
-//   border-radius: 3px;
-//   box-shadow: 3px 3px 5px rgba(0,0,0,0.1);
-//   overflow: hidden;
-//   position: relative;
-// }
 
-// .critic img {
-//   max-width: 100%;
-//   height: 400px;
-
-// }
-
-// .critic-container {
-//   display: flex;
-//   flex-wrap: wrap;;
-// }
-
-// .critic-info {
-//   display: flex;
-//   padding: 1rem;
-//   align-items: center;
-//   justify-content: space-between;
-// }
-
-// .critic-info h3 {
-//   margin: 0;
-// }
-
-// .critic-over {
-//   position: absolute;
-//   border-top-left-radius: 3px;
-//   border-top-right-radius: 3px;
-//   bottom: 0;
-//   left: 0;
-//   right: 0;
-//   background-color: #fff;
-//   box-shadow: 0 -3px 5px rgba(0,0,0,0.1);
-//   overflow: auto;
-//   max-height: 100%;
-//   color: #22254b;
-//   transform: translateY(102%);
-//   transition: transform 0.3s ease-in-out;
-// }
-
-// .critic:hover .critic-over {
-//   transform: translateY(0%);
-// }
-
-// .search{
-  
-//   padding: 1rem; 
-//   font-family: inherit;
-//   border: 2px solid #22254b;
-//   font-size: 1.2rem;
-//   border-radius: 50px;
-//   background-color: transparent;
-//   color: #fff;
-// }
-
-// .search:focus {
-//   outline: none;
-// }
+// MY ADDED CSS CODE
 
 header {
   background-color: #373b69;
@@ -128,23 +64,6 @@ header {
   align-items: center;
 }
 
-// .tag {
-//   background-color: #22254b;
-//   padding: 0.5rem;
-//   border-radius: 5px;
-//   font-size: bold;
-
-// }
-
-// .tag.green {
-// color: green;
-// }
-// .tag.orange {
-//   color: orange;
-// }
-// .tag.red {
-//   color: red;
-// }
 
 .App input {
   margin-top: 20px;
