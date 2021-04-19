@@ -96,6 +96,15 @@ setPageNumber(selected)
           <Route path="/" component={HomePage} exact />
           <Route path="/home" component={HomePage} />
         </Switch>
+
+        {/* SUDO CODE FOR STUFF I DID NOT COMPLETE */}
+
+        {/* -IMPORT MOVIE REVIEWS THE SAME WAY I DID WITH CRITICS */}
+
+        {/* -MAKE AN ONCLICK EVENT FOR THE CRITIC THAT REVIEWED THE SPECIFIC MOVIE */}
+
+        {/* USE THE FILTER MORE FUNCTIONALBE WITH SPECIFIC DETAILS WITHIN THE REQUIREMENTS IN THE EXISTING CODE FOR NAME OF CRITIC */}
+
     
           </div>
       )
