@@ -15,7 +15,7 @@ import ReactPaginate from 'react-paginate'
 
 
 import { Helmet } from 'react-helmet' // Header Generator
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 
 
 
@@ -25,6 +25,9 @@ import HomePage from 'containers/HomePage/HomePage'
 import '../../styles/styles.scss'
 import { get, includes } from 'lodash';
 import { render } from 'react-testing-library';
+import Navbar from 'react-bootstrap/Navbar';
+import NavbarBrand from 'react-bootstrap/NavbarBrand';
+import Nav from 'react-bootstrap/Nav';
 
 function App() {
 
@@ -32,6 +35,20 @@ function App() {
     
 
     <Route>
+
+
+<Navbar className="border-bottom" bg="transparent" expand="lg">
+          <NavbarBrand>Ian Clark</NavbarBrand>
+
+          <Navbar.Toggle className="border-0" aria-controls="navbar-toggle" />
+          <Navbar.Collapse id="navbar-toggle">
+            <Nav className= "ml-auto" >
+              <Link className="nav-link" to="/">CriticPage</Link>
+              <Link className="nav-link" to="/moviepage">MoviePage</Link>
+              
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
       
     <Switch>
           {/* <Route path="/" component={HomePage} exact /> */}
@@ -44,7 +61,7 @@ function App() {
   )
 
  
-  
+
        
 }
 

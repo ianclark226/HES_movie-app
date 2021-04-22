@@ -41,18 +41,18 @@ setPageNumber(selected)
 
     <div className="App">
       <header>
-          <h1> Critics</h1>
+          <h1> Movies</h1>
       </header>
      
       <input 
       type="text" 
-      placeholder="search critic" onChange={(e) => {setSearchTerm(e.target.value)}}
+      placeholder="search movie" onChange={(e) => {setSearchTerm(e.target.value)}}
       />
       {JsonData
       .filter((val) => {
         if(searchTerm === "") {
           return val;
-        } else if (val.display_name.toLowerCase().includes(searchTerm.toLowerCase())) {
+        } else if (val.publication_date.toLowerCase().includes(searchTerm.toLowerCase())) {
           return val;
         }
       })
