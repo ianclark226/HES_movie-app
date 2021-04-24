@@ -1,7 +1,21 @@
 nav {
   display: flex;
-  justify-content: space-between;
-
+  justify-content: center;
+  height: 60px;
   background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(245,242,232,1) 100%);
   box-shadow: 0 2px 5px 0px var(--grey-400);
+  padding-top: 20px;
+}
+
+nav .nav-link {
+  
+  padding:10px 20px;
+ margin-top: 15px;
+  
+  color: blue;
+  font-weight: bold;
+}
+
+.ml-auto {
+padding: 0 20px;
 }

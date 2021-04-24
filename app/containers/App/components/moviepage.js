@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import JsonData from '../../../public/movie-reviews.json'
+import MovieData from '../../../public/movie-reviews.json'
+import CriticData from '../../../public/critics.json'
 import ReactPaginate from 'react-paginate'
 import Modal from './modal'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +10,7 @@ import '../../../styles/styles.scss'
 import { get, includes } from 'lodash'
 
 function MoviePage() {
-  const [users, setUsers] = useState(JsonData.slice(0, 50))
+  const [users, setUsers] = useState(MovieData.slice(0, 50))
   const [pageNumber, setPageNumber] = useState([0])
   const [isOpen, setIsOpen] = useState(false)
 
@@ -24,6 +25,8 @@ function MoviePage() {
   }
 
   const [searchTerm, setSearchTerm] = useState('')
+
+  let movieName;
 
   //GET CURRENT POSTS
 
@@ -40,25 +43,22 @@ function MoviePage() {
           setSearchTerm(e.target.value)
         }}
       />
-      {JsonData.filter(val => {
+      <div className="topics">
+                  <ul>
+                      <li>Name</li>
+                      <li>Rating</li>
+                      <li>Publish Date</li>
+                      <li>Critics Choice</li>
+                  </ul>
+                  </div>
+      {MovieData.filter(val => {
         if (searchTerm === '') {
           return val
         } else if (
-          val.display_title.toLowerCase().includes(searchTerm.toLowerCase())
+          val.critics_pick, val.publication_date, val.display_title.toLowerCase().includes(searchTerm.toLowerCase())
         ) {
           return val
-        } else if (
-          val.mpaa_rating.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-          return val
-        } else if (
-          val.publication_date.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-          return val
-        } else if (
-          val.critics_pick.toLowerCase().includes(searchTerm.toLowerCase())
-        ) {
-          return val
+        
         }
       })
 
@@ -66,7 +66,11 @@ function MoviePage() {
 
         .map((val, key) => {
           return (
+              
+                  
             <div className="user" key={key}>
+                
+                
               <p>{val.display_title}</p>
               <p>{val.mpaa_rating}</p>
               <p>{val.publication_date}</p>
@@ -77,47 +81,35 @@ function MoviePage() {
                 </div>
               </div>
             </div>
+            
           )
         })}
+        
+        
 
       <Modal open={isOpen} onClose={() => setIsOpen(false)}>
         <div className="modal-container" id="modal">
           <div className="modal">
             <div className="modal-content">
-              <h2>What was Collected?</h2>
-              <div className="data">
-                <div className="data-menu">
-                  <li className="item">
-                    <a href="#" className="menu-btn">
-                      {/* <FontAwesomeIcon icon={faBalanceScale} /><span>Account Balance</span> */}
-                    </a>
-                  </li>
-                  <li className="item">
-                    <a href="#" className="menu-btn">
-                      {/* <FontAwesomeIcon icon={faHome} /><span>Address</span> */}
-                    </a>
-                  </li>
-                  <li className="item">
-                    <a href="#" className="menu-btn">
-                      {/* <FontAwesomeIcon icon={faPersonBooth} /><span>Agent Number</span> */}
-                    </a>
-                  </li>
-                  <li className="item">
-                    <a href="#" className="menu-btn">
-                      {/* <FontAwesomeIcon icon={faCreditCard} /><span>Credit or Debit Card Number</span> */}
-                    </a>
-                  </li>
-                  <li className="item">
-                    <a href="#" className="menu-btn">
-                      {/* <FontAwesomeIcon icon={faDna} /><span>DNA- deoxyribonucleic acid profile</span> */}
-                    </a>
-                  </li>
-                  <h3> Total Data Elements: 5</h3>
-                  <button className="action">Privacy Statement</button>
-
-                  <button className="action">Action Your Rights</button>
-                </div>
-              </div>
+              {MovieData.map((val, key) => {
+                  return (
+                      
+                    <div className="info" key={key}>
+                        
+                        
+                        {/* <p>{val.id[0]}</p> */}
+                      <p>{val.display_name}</p>
+                      <p>{val.multimedia.src}</p>
+                      <p>{val.mpaa_rating}</p>
+                      <p>{val.critics_pick}</p>
+                      <p>{val.headline}</p>
+                      <p>{val.summary_short}</p>
+                      <p>{val.byline}</p>
+                      <p>{val.link.url}</p>
+                      
+                    </div>
+                  )
+              })}
             </div>
           </div>
         </div>
@@ -137,13 +129,6 @@ function MoviePage() {
         activeClassName={'paginationActive'}
       />
 
-      {/* SUDO CODE FOR STUFF I DID NOT COMPLETE */}
-
-      {/* -IMPORT MOVIE REVIEWS THE SAME WAY I DID WITH CRITICS */}
-
-      {/* -MAKE AN ONCLICK EVENT FOR THE CRITIC THAT REVIEWED THE SPECIFIC MOVIE */}
-
-      {/* USE THE FILTER MORE FUNCTIONALBE WITH SPECIFIC DETAILS WITHIN THE REQUIREMENTS IN THE EXISTING CODE FOR NAME OF CRITIC */}
     </div>
   )
 }
